@@ -6,6 +6,8 @@ class Reservation < ApplicationRecord
 
   before_validation :generate_booking_code, :on => :create
 
+  belongs_to :user, :optional => true
+
   def generate_booking_code
     self.booking_code = SecureRandom.uuid
   end
