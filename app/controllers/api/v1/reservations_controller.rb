@@ -5,6 +5,9 @@ class Api::V1::ReservationsController < ApiController
                                     :seat_number => params[:seat_number],
                                     :customer_name => params[:customer_name],
                                     :customer_phone => params[:customer_phone] )
+    #关联到登入用户                              
+    @reservation.user = current_user
+
     if @reservation.save
       render :json => { :booking_code => @reservation.booking_code,
                         :reservation_url => api_v1_reservation_url(@reservation.booking_code) }
