@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :api, :defaults => { :format => :json } do
     namespace :v1 do
+      get "/reservations" => "reservation#index", :as => :reservations
       get "/trains" => "trains#index", :as => :trains
       get "/trains/:train_number" => "trains#show", :as => :train
 
