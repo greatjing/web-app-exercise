@@ -18,6 +18,10 @@ Rails.application.routes.draw do
       patch "/reservations/:booking_code" => "reservations#update", :as => :update_reservation
       delete "/reservations/:booking_code" => "reservations#destroy", :ad => :cancel_reservation
 
+      # 注册用户
+      post "/signup" => "auth#signup"
+      post "/login" => "auth#login"
+      post "/logout" => "auth#logout"
     end
   end
 
