@@ -8,7 +8,7 @@ class Train < ApplicationRecord
   SEATS = begin
     (1..6).to_a.map do |series|
       ["A","B","C"].map do |letter|
-        '#{series}#{letter}'
+        "#{series}#{letter}"
       end
     end
   end.flatten
