@@ -1,7 +1,8 @@
 class Api::V1::TrainsController < ApiController
 
   def index
-    @trains = Train.all
+    # @trains = Train.all
+    @trains = Train.paginate( :page => params[:page] )
 
     # 使用jbuilder
 
