@@ -52,12 +52,16 @@ RSpec.describe "API_V1::Auth", :type => :request do
     post "/api/v1/logout", params: { :auth_token => @user.authentication_token }
     # 校验返回状态码
     expect(response).to have_http_status(200)
+    # 记录之前token
     old_token = @user.authentication_token
+    #重新加载
+    @user.reload
+
     puts old_token
     puts "*****"
     puts @user.authentication_token
     # 校验token值变化
-    expect(@user.authentication_token).to eq(old_token)
+    expect(@user.authentication_token).not_to eq(old_token)
   end
 
   example "invalid auth token login" do
