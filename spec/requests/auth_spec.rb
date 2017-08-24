@@ -28,10 +28,13 @@ RSpec.describe "API_V1::Auth", :type => :request do
   end
 
   example "valid login and logout" do
+    # 打开登录页
     post "/api/v1/login", params: { :auth_token => @user.authentication_token,
                                     :email => @user.email , :password => @user.password }
+    # 校验返回的状态码
     expect(response).to have_http_status(200)
 
+    # 校验返回的json
     expect(response.body).to eq(
     {
       :message => "OK",
@@ -40,15 +43,20 @@ RSpec.describe "API_V1::Auth", :type => :request do
     }.to_json
     )
 
+    # 不传参数，点击注销
     post "/api/v1/logout"
+    # 校验返回的状态码
     expect(response).to have_http_status(401)
 
+    # 点击注销
     post "/api/v1/logout", params: { :auth_token => @user.authentication_token }
+    # 校验返回状态码
     expect(response).to have_http_status(200)
     old_token = @user.authentication_token
     puts old_token
     puts "*****"
     puts @user.authentication_token
+    # 校验token值变化
     expect(@user.authentication_token).to eq(old_token)
   end
 
