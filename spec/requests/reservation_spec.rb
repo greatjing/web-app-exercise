@@ -38,4 +38,14 @@ RSpec.describe "API_V1::Reservation", :type => :request do
     expect(Reservation.count).to eq(0)
   end
 
+  example "PATCH /api/v1/reservations/{booking_code}" do
+    patch "/api/v1/reservations/#{@reservation.booking_code}", :params => { :customer_name => "update_name", :customer_phone => "87654321" }
+    expect(response).to have_http_status(200)
+    expect(response.body).to eq({ :message => "更新成功" }.to_json )
+
+    @reservation.reload
+    expect(@reservation.customer_name).to eq("update_name")
+    expect(@reservation.customer_phone).to eq("87654321")
+  end
+
 end
