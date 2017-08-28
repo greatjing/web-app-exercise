@@ -48,4 +48,20 @@ RSpec.describe "API_V1::Reservation", :type => :request do
     expect(@reservation.customer_phone).to eq("87654321")
   end
 
+  # describe "POST /api/v1/reservations" do
+  #   example "POST success without auth_token" do
+  #     post "/api/v1/reservations", :params => { :train_number => @train1.number, :seat_number => "1B",
+  #                                               :customer_name => "creater", :customer_phone => "12345"}
+  #     current_reservation = Reservation.last
+  #     # byebug
+  #     expect(response).to have_http_status(200)
+  #     expect(response).to eq({ :booking_code => current_reservation.booking_code, :reservation_url => api_v1_reservations_url(current_reservation.booking_code) }.to_json)
+  #
+  #     expect(current_reservation.customer_name).to eq("creater")
+  #     expect(current_reservation.customer_phone).to eq("12345")
+  #     expect(current_reservation.user_id).to eq(nil)
+  #   end
+  # end
+
+
 end
